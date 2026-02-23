@@ -1,0 +1,64 @@
+You are resuming a work session. Your job is to reconstruct full context so the user picks up exactly where they left off.
+
+## Step 1: Load Core Memory
+
+Read these files in order:
+1. `.claude/context/memory/user_preferences.md` — Who the user is
+2. `.claude/context/memory/user_projects.md` — Active projects
+3. `.claude/context/memory/work_status.md` — What happened recently
+4. `.claude/context/memory/learnings.md` — Key insights
+
+## Step 2: Load Recent Session Logs
+
+Check `.claude/context/session-logs/` for recent session logs.
+
+**Default behavior** (no arguments): Load the last 3 session logs.
+**With a number** (e.g., `/resume 10`): Load the last N session logs.
+**With a keyword** (e.g., `/resume auth`): Load last 3 sessions + search ALL session logs for the keyword.
+**With both** (e.g., `/resume 5 meetings`): Load last N sessions + search for keyword.
+
+Session logs have a Quick Reference section at the top — read that first (fast, low token use). Only dig into the full log if more detail is needed.
+
+## Step 3: Check Active Tasks
+
+Read the Kanban board at `04_tasks/boards/main-kanban.md`:
+- What's in "In Progress"?
+- What's overdue (check due dates)?
+- Any tasks in "Not Started" that should be addressed?
+
+## Step 4: Check Goals (if they exist)
+
+If `08_goals/` has content, scan for:
+- Active goals and their status
+- Any quarterly milestones approaching
+
+## Step 5: Present the Briefing
+
+Deliver a concise briefing to the user:
+
+```
+Welcome back, [name].
+
+**Last session** (date): [Brief summary of what was done]
+
+**In Progress**: [List of active tasks]
+
+**Pending from last time**: [Items left over]
+
+**Upcoming**: [Deadlines, milestones, scheduled meetings]
+
+**What would you like to focus on today?**
+```
+
+Keep it brief. Don't dump every memory — surface what's relevant right now.
+
+## Step 6: Update Work Status
+
+After the briefing, update `.claude/context/memory/work_status.md` to reflect the new session start:
+
+```markdown
+## Current Session
+- **Date**: [today]
+- **Focus**: Awaiting user input
+- **Resumed from**: [last session date and topic]
+```
