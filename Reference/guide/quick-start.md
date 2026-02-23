@@ -11,7 +11,7 @@ Get your AI-powered second brain running in under 10 minutes.
 ## What Is This?
 
 This is an Obsidian vault that doubles as a personal AI assistant. It uses Claude Code (or Claude Co-Work) to:
-- Manage your tasks with a visual Kanban board
+- Manage your tasks with TaskNotes
 - Process meeting transcripts and extract action items
 - Run daily routines (morning check-in, evening reflection, weekly review)
 - Remember your preferences, projects, and thinking patterns
@@ -31,19 +31,19 @@ Download Obsidian from [obsidian.md](https://obsidian.md/) — it's free.
 3. Select this `personal-assistant` folder
 4. When prompted, click "Trust author and enable plugins"
 
-You should see the numbered folders in the sidebar:
-- 00_inbox through 08_goals
+You should see the vault folders in the sidebar:
+- Inbox, Thinking, Projects, Meetings, Daily, Reference, Archive, Goals
 
 ## Step 3: Install Community Plugins
 
 The vault is pre-configured to use these plugins:
-1. **Kanban** — Visual task boards
+1. **TaskNotes** — Task management system
 2. **Dataview** — Database-like queries on your notes
 
 To install them:
 1. Go to Settings (gear icon) → Community Plugins
 2. Turn off "Restricted mode"
-3. Click "Browse" and search for "Kanban" — Install and Enable
+3. Click "Browse" and search for "TaskNotes" — Install and Enable
 4. Search for "Dataview" — Install and Enable
 
 ## Step 4: Launch Claude Code
@@ -61,7 +61,7 @@ Type `/setup` in Claude Code. The assistant will:
 1. Ask you about yourself, your work, and what you want to track
 2. Build a personalized vault structure based on your answers
 3. Configure memory files with your preferences
-4. Set up your Kanban board with initial tasks
+4. Set up your initial tasks in TaskNotes
 
 ## Step 6: Start Using It
 
@@ -69,12 +69,12 @@ Now just talk naturally:
 
 | You Say | What Happens |
 |---------|--------------|
-| "Add a task: finish the proposal by Friday" | Creates a task on your Kanban board |
+| "Add a task: finish the proposal by Friday" | Creates a task in TaskNotes |
 | "Morning routine" or `/daily-review` | Runs your morning check-in |
 | [Paste a meeting transcript] | Processes it, extracts action items, saves to meetings folder |
 | "Write a YouTube script about X" | Uses your YouTube script output style |
 | "Draft an email to Sarah about the project update" | Uses your email output style |
-| "What tasks are overdue?" | Checks your Kanban board |
+| "What tasks are overdue?" | Checks your TaskNotes |
 | "What did we discuss in last week's standup?" | Searches your meeting notes |
 
 ## Core Commands
@@ -118,7 +118,7 @@ When you correct Claude, it offers to save the correction as a permanent rule. O
 3-Year Vision → Yearly Goals → Projects → Monthly Goals → Weekly Review → Daily Tasks
 ```
 
-Goals live in `08_goals/`. Projects link to goals. Tasks link to projects. During weekly reviews, Claude flags goals that have no active project (they're drifting). Nothing falls through the cracks.
+Goals live in `Goals/`. Projects link to goals. Tasks link to projects. During weekly reviews, Claude flags goals that have no active project (they're drifting). Nothing falls through the cracks.
 
 ## Privacy & Safety
 
@@ -154,15 +154,14 @@ If you're using Claude Co-Work instead of Claude Code:
 
 | Folder | Purpose |
 |--------|---------|
-| `00_inbox` | Quick capture — drop anything here |
-| `01_thinking` | Your ideas, synthesis, thinking patterns |
-| `02_projects` | Active project folders |
-| `03_meetings` | Meeting transcripts (by type: standups, client calls, 1:1s) |
-| `04_tasks` | Kanban boards and task files |
-| `05_daily` | Daily journals and check-ins |
-| `06_reference` | External knowledge, tools, this guide |
-| `07_archive` | Completed or inactive content |
-| `08_goals` | Vision, yearly goals, monthly goals |
+| `Inbox` | Quick capture — drop anything here |
+| `Thinking` | Your ideas, synthesis, thinking patterns |
+| `Projects` | Active project folders |
+| `Meetings` | Meeting transcripts (by type: standups, client calls, 1:1s) |
+| `Daily` | Daily journals and check-ins |
+| `Reference` | External knowledge, tools, this guide |
+| `Archive` | Completed or inactive content |
+| `Goals` | Vision, yearly goals, monthly goals |
 
 ## Tips
 

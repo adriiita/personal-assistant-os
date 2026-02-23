@@ -21,14 +21,20 @@ Session logs have a Quick Reference section at the top — read that first (fast
 
 ## Step 3: Check Active Tasks
 
-Read the Kanban board at `04_tasks/boards/main-kanban.md`:
-- What's in "In Progress"?
+Query TaskNotes API for active tasks:
+```bash
+curl -s "http://127.0.0.1:8080/api/tasks?status=open"
+curl -s "http://127.0.0.1:8080/api/tasks?status=in-progress"
+```
+
+Check:
+- What's in progress?
 - What's overdue (check due dates)?
-- Any tasks in "Not Started" that should be addressed?
+- Any open tasks that should be addressed?
 
 ## Step 4: Check Goals (if they exist)
 
-If `08_goals/` has content, scan for:
+If `Goals/` has content, scan for:
 - Active goals and their status
 - Any quarterly milestones approaching
 

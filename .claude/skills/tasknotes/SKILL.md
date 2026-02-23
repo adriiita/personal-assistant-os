@@ -1,91 +1,134 @@
 ---
 name: tasknotes
-description: HTTP API-based task management using the TaskNotes Obsidian plugin. Optional upgrade — requires TaskNotes plugin running on port 8090.
+description: HTTP API-based task management using the TaskNotes Obsidian plugin. Primary task system — creates, updates, queries, and manages tasks via REST API.
 ---
 
-# TaskNotes Integration (Optional)
+# TaskNotes — Primary Task System
 
-USE WHEN the user has the TaskNotes Obsidian plugin installed and running, AND they prefer API-based task management over the Kanban board.
+USE WHEN the user:
+- Asks to create, update, or manage tasks
+- Wants to check what's due, overdue, or in progress
+- Mentions tasks, to-dos, priorities, deadlines
+- Asks to track time or start a Pomodoro
+- Wants a kanban view, calendar view, or agenda of tasks
 
-## Prerequisites
+## How It Works
 
-- TaskNotes plugin installed in Obsidian (v4.3.0+)
-- HTTP API enabled in plugin settings (port 8090)
-- Plugin data config: `httpApi.enabled: true, httpApi.port: 8090`
+TaskNotes is the primary task management system. It runs as an Obsidian plugin with an HTTP API on port 8080. Tasks are stored as individual markdown files in `TaskNotes/Tasks/`.
+
+### Prerequisites
+- TaskNotes plugin installed and enabled in Obsidian
+- HTTP API enabled (Settings → TaskNotes → API → Enable HTTP API)
+- Obsidian must be open for the API to be available
 
 ## API Reference
 
-Base URL: `http://127.0.0.1:8090/api`
+Base URL: `http://127.0.0.1:8080/api`
+
+### Check if API is Running
+```bash
+curl -s --max-time 2 "http://127.0.0.1:8080/api/tasks" > /dev/null 2>&1 && echo "TaskNotes API is running" || echo "TaskNotes API not available — is Obsidian open?"
+```
 
 ### List All Tasks
 ```bash
-curl -s "http://127.0.0.1:8090/api/tasks"
+curl -s "http://127.0.0.1:8080/api/tasks"
 ```
 
 ### List Tasks by Status
 ```bash
-curl -s "http://127.0.0.1:8090/api/tasks?status=open"
-curl -s "http://127.0.0.1:8090/api/tasks?status=in-progress"
-curl -s "http://127.0.0.1:8090/api/tasks?status=done"
+curl -s "http://127.0.0.1:8080/api/tasks?status=open"
+curl -s "http://127.0.0.1:8080/api/tasks?status=in-progress"
+curl -s "http://127.0.0.1:8080/api/tasks?status=done"
 ```
 
 ### Create a Task
 ```bash
-curl -s -X POST "http://127.0.0.1:8090/api/tasks" \
+curl -s -X POST "http://127.0.0.1:8080/api/tasks" \
   -H "Content-Type: application/json" \
   -d '{
     "title": "Task name",
     "status": "open",
     "priority": "normal",
     "due": "2026-03-15",
-    "projects": ["Project Name"]
+    "scheduled": "2026-03-10",
+    "projects": ["Project Name"],
+    "contexts": ["work"],
+    "tags": ["tag1"]
   }'
 ```
 
 ### Update a Task
 ```bash
-curl -s -X PUT "http://127.0.0.1:8090/api/tasks/Tasks/task-name.md" \
+curl -s -X PUT "http://127.0.0.1:8080/api/tasks/Tasks/task-name.md" \
   -H "Content-Type: application/json" \
   -d '{"status": "in-progress"}'
 ```
 
+### Complete a Task
+```bash
+curl -s -X PUT "http://127.0.0.1:8080/api/tasks/Tasks/task-name.md" \
+  -H "Content-Type: application/json" \
+  -d '{"status": "done"}'
+```
+
 ### Delete a Task
 ```bash
-curl -s -X DELETE "http://127.0.0.1:8090/api/tasks/Tasks/task-name.md"
+curl -s -X DELETE "http://127.0.0.1:8080/api/tasks/Tasks/task-name.md"
 ```
 
-### Get Available Options
+### Get Available Options (statuses, priorities, projects, etc.)
 ```bash
-curl -s "http://127.0.0.1:8090/api/options"
+curl -s "http://127.0.0.1:8080/api/options"
 ```
 
-## Task Statuses
-- `open` — Not started
+## Task Properties
+
+### Statuses
+- `open` — Not started (default)
 - `in-progress` — Currently working on
 - `done` — Completed
 
-## Task Priorities
+### Priorities
 - `none` — No priority set
-- `low` — Low priority
-- `normal` — Default priority
-- `high` — High priority
+- `low` — Low priority (green)
+- `normal` — Default priority (yellow)
+- `high` — High priority (red)
 
-## When to Use TaskNotes vs Kanban
+### Optional Fields
+- `due` — Due date (YYYY-MM-DD)
+- `scheduled` — Scheduled start date (YYYY-MM-DD)
+- `projects` — Array of project names (links to `Projects/` folders)
+- `contexts` — Array of contexts (e.g., "work", "home", "errands")
+- `tags` — Array of tags
+- `timeEstimate` — Estimated minutes
+- `blockedBy` — Array of task paths this task is blocked by
 
-| Feature | Kanban (Default) | TaskNotes |
-|---------|-----------------|-----------|
-| Setup required | None | Plugin + HTTP API |
-| Data format | Pure markdown | Individual task files |
-| Visual board | Obsidian Kanban plugin | TaskNotes built-in views |
-| API access | File editing | HTTP REST API |
-| Dependencies | None | TaskNotes plugin running |
-| Best for | Simple task tracking | Complex project management |
+## Built-in Views in Obsidian
 
-## Detecting TaskNotes
+TaskNotes provides 6 views users can open directly in Obsidian:
 
-Before using this skill, check if the API is running:
-```bash
-curl -s --max-time 2 "http://127.0.0.1:8090/api/tasks" > /dev/null 2>&1 && echo "TaskNotes is running" || echo "TaskNotes not available — use Kanban instead"
-```
+| View | What It Shows |
+|------|---------------|
+| **Task List** | All tasks with 6 tabs: All, Not Blocked, Today, Overdue, This Week, Unscheduled |
+| **Kanban Board** | Visual columns by status (Open → In Progress → Done) |
+| **Calendar** | Weekly time grid with tasks on time slots |
+| **Mini Calendar** | Month overview with dots for task dates |
+| **Agenda** | Flat list of upcoming 7 days |
+| **Relationships** | Task dependencies, subtasks, blocking chains |
 
-If TaskNotes is not running, fall back to the Kanban skill.
+## Features
+
+- **Urgency scoring** — Automatic priority ranking based on priority + deadline proximity
+- **Time tracking** — Track time spent on tasks
+- **Pomodoro timer** — Built-in 25/5 minute focus timer
+- **Task dependencies** — Block tasks until prerequisites are done
+- **Recurring tasks** — Set tasks to repeat on a schedule
+- **Natural language input** — Users can type dates naturally in Obsidian
+
+## When API is Unavailable
+
+If the API doesn't respond (Obsidian closed, plugin disabled), tell the user:
+"TaskNotes API isn't responding. Please make sure Obsidian is open with the TaskNotes plugin enabled."
+
+Do NOT fall back to file-based task creation — TaskNotes manages its own file format.

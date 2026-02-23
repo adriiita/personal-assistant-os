@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 07_archive
+folder: Archive
 ---
 
 # Archive
@@ -8,9 +8,9 @@ folder: 07_archive
 Completed or inactive content. The graveyard for things that are done but worth keeping.
 
 ## What Goes Here
-- Completed projects (moved from `02_projects/`)
+- Completed projects (moved from `Projects/`)
 - Old daily notes (batch archive during monthly cleanup)
-- Finished tasks cleared from the Kanban board
+- Finished tasks cleared from TaskNotes
 - Deprecated reference material
 - Anything you don't need actively but might want later
 
@@ -23,5 +23,5 @@ Completed or inactive content. The graveyard for things that are done but worth 
 - Archived content is still searchable — nothing is lost
 - Don't delete unless you're certain you'll never need it
 - Keep the archive organized with subfolders mirroring the main structure:
-  - `07_archive/projects/` for old projects
-  - `07_archive/daily/` for old daily notes
+  - `Archive/projects/` for old projects
+  - `Archive/daily/` for old daily notes

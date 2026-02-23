@@ -17,7 +17,7 @@ Ask about:
 - What tools do you use daily? (note-taking, calendar, communication, etc.)
 - Do you prefer detailed or concise communication?
 - When do you work? (morning person, night owl, specific hours)
-- How do you like tasks organized? (lists, kanban boards, calendars)
+- How do you like tasks organized? (lists, boards, calendars)
 
 ## Stage 3: What Do You Want to Track?
 
@@ -29,7 +29,7 @@ Present options and ask which are relevant. Recommend based on what you've learn
   - Client calls?
   - One-on-ones?
   - Other types?
-- [ ] **Tasks / Kanban** — Visual task board with lanes (Not Started → In Progress → Done)
+- [ ] **Tasks / TaskNotes** — Task management via TaskNotes plugin (Open → In Progress → Done)
 - [ ] **Daily Journaling** — Morning check-ins, evening reflections, weekly reviews
 - [ ] **Personal Life** — Family, health, fitness, hobbies
 - [ ] **Content Creation** — YouTube, blog, social media content pipelines
@@ -55,13 +55,13 @@ Write to `.claude/context/memory/user_projects.md`:
 
 ### 2. Create Folder Structure
 
-The base folders already exist (00_inbox through 07_archive). Based on what the user wants to track:
+The base folders already exist (Inbox through Archive). Based on what the user wants to track:
 
-- If **Meetings**: Ensure subfolders exist under `03_meetings/` for each meeting type they mentioned
-- If **Projects**: Create project folders under `02_projects/` for each active project
-- If **Content Creation**: Create content pipeline folders (e.g., `02_projects/youtube/`, `02_projects/blog/`)
-- If **Personal Life**: Create relevant subfolders under `01_thinking/` or dedicated folders
-- If **Client Management**: Create `02_projects/clients/` with a template
+- If **Meetings**: Ensure subfolders exist under `Meetings/` for each meeting type they mentioned
+- If **Projects**: Create project folders under `Projects/` for each active project
+- If **Content Creation**: Create content pipeline folders (e.g., `Projects/youtube/`, `Projects/blog/`)
+- If **Personal Life**: Create relevant subfolders under `Thinking/` or dedicated folders
+- If **Client Management**: Create `Projects/clients/` with a template
 
 ### 3. Create Guide Files
 
@@ -71,21 +71,13 @@ For each active folder, create a `_guide.md` file that explains:
 - What frontmatter to use
 - Examples of content
 
-### 4. Create Starter Kanban Board
+### 4. Create Initial Tasks via TaskNotes
 
-Create `04_tasks/boards/main-kanban.md` with initial lanes and any tasks the user mentioned:
-
-```markdown
----
-kanban-plugin: basic
----
-
-## Not Started
-
-## In Progress
-
-## Done
-**Complete**
+If the user mentioned tasks, create them via the TaskNotes API:
+```bash
+curl -s -X POST "http://127.0.0.1:8080/api/tasks" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Task name", "status": "open", "priority": "normal"}'
 ```
 
 ### 5. Update Root CLAUDE.md

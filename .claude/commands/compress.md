@@ -81,7 +81,7 @@ Based on what was preserved:
 - **Learnings** → Append to `.claude/context/memory/learnings.md`
 - **User preferences discovered** → Update `.claude/context/memory/user_preferences.md`
 - **Project updates** → Update `.claude/context/memory/user_projects.md`
-- **Pending tasks** → Add to Kanban board at `04_tasks/boards/main-kanban.md`
+- **Pending tasks** → Create in TaskNotes via API: `curl -s -X POST "http://127.0.0.1:8080/api/tasks" -H "Content-Type: application/json" -d '{"title": "Task", "status": "open"}'`
 
 ## Step 4: Update Work Status
 

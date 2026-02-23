@@ -13,9 +13,9 @@ USE WHEN the user mentions:
 ## How It Works
 
 This skill works closely with:
-- **Kanban skill** — to check and update tasks
+- **TaskNotes** — to check and update tasks via API
 - **Memory system** — to update learnings and work status
-- **Daily folder** (`05_daily/`) — to store journal entries
+- **Daily folder** (`Daily/`) — to store journal entries
 
 ## Routing
 
@@ -33,14 +33,14 @@ Templates for each routine are in `.claude/skills/daily-review/templates/`:
 
 ## File Naming Convention
 
-- Morning: `05_daily/YYYY-MM-DD Morning.md`
-- Evening: `05_daily/YYYY-MM-DD Evening.md`
-- Weekly: `05_daily/YYYY-MM-DD Weekly Review.md`
+- Morning: `Daily/YYYY-MM-DD Morning.md`
+- Evening: `Daily/YYYY-MM-DD Evening.md`
+- Weekly: `Daily/YYYY-MM-DD Weekly Review.md`
 
 ## Cross-References
 
 After each review:
-- Update the Kanban board with any new or completed tasks
+- Update TaskNotes with any new or completed tasks via the API
 - Update `.claude/context/memory/work_status.md` with session summary
 - Add any new learnings to `.claude/context/memory/learnings.md`
 - Link to relevant projects using [[wiki links]]

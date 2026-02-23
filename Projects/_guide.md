@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 02_projects
+folder: Projects
 ---
 
 # Projects
@@ -14,7 +14,7 @@ Active project folders. Each project gets its own subfolder.
 
 ## Folder Structure Per Project
 ```
-02_projects/
+Projects/
 └── project-name/
     ├── README.md          # Project overview, status, key details
     ├── research/          # Research and reference material
@@ -48,6 +48,6 @@ What needs to happen next?
 ```
 
 ## Tips
-- Move completed projects to `07_archive/`
-- Link project notes to your Kanban board tasks
+- Move completed projects to `Archive/`
+- Link project notes to your TaskNotes tasks
 - Reference projects from daily reviews using [[wiki links]]

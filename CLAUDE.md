@@ -31,10 +31,9 @@ When the user says "write this as a YouTube script" or "draft an email", load th
 
 Skills live in `.claude/skills/`. Each has a `SKILL.md` that defines when and how to use it:
 
-- **kanban** — Manage Kanban boards (create tasks, move between lanes, set due dates)
+- **tasknotes** — HTTP API-based task management using the TaskNotes Obsidian plugin (primary task system)
 - **meetings** — Process meeting transcripts, extract action items, create summaries
 - **fireflies** — Sync transcripts from Fireflies.ai (requires MCP setup)
-- **tasknotes** — HTTP API-based task management (optional, requires TaskNotes plugin)
 - **daily-review** — Morning check-in, evening reflection, weekly review
 - **vault-setup** — Interactive onboarding: builds the vault structure based on user's needs
 
@@ -49,20 +48,18 @@ Skills live in `.claude/skills/`. Each has a `SKILL.md` that defines when and ho
 ### Vault Structure
 
 ```
-00_inbox/       — Quick capture. Drop anything here.
-01_thinking/    — Your synthesis, ideas, thinking patterns
-02_projects/    — Active project folders
-03_meetings/    — Meeting transcripts and insights
+Inbox/          — Quick capture. Drop anything here.
+Thinking/       — Your synthesis, ideas, thinking patterns
+Projects/       — Active project folders
+Meetings/       — Meeting transcripts and insights
   ├── team-standups/   — Team standup notes
   ├── client-calls/    — Client meeting notes
   ├── one-on-ones/     — 1:1 meeting notes
   └── general/         — Other meetings
-04_tasks/       — Task management
-  └── boards/          — Kanban boards (markdown-based)
-05_daily/       — Daily journals and check-ins
-06_reference/   — External knowledge, tools, approaches
-07_archive/     — Completed or inactive content
-08_goals/       — Vision, yearly goals, monthly goals (the cascade)
+Daily/          — Daily journals and check-ins
+Reference/      — External knowledge, tools, approaches
+Archive/        — Completed or inactive content
+Goals/          — Vision, yearly goals, monthly goals (the cascade)
 ```
 
 ### System Folders (Hidden from Obsidian)
@@ -83,9 +80,9 @@ Every action should trace back to a goal:
 3-Year Vision → Yearly Goals → Projects → Monthly Goals → Weekly Review → Daily Tasks
 ```
 
-- Goals live in `08_goals/`
-- Projects in `02_projects/` link to goals
-- Tasks on the Kanban board link to projects
+- Goals live in `Goals/`
+- Projects in `Projects/` link to goals
+- Tasks in TaskNotes link to projects
 - During weekly reviews, check which goals have no active project (they're drifting)
 
 ### Write Once, Surface Everywhere
@@ -107,7 +104,7 @@ status: completed
 **Dataview query pattern** (for use in project files, dashboards, etc.):
 ```dataview
 TABLE date, attendees
-FROM "03_meetings"
+FROM "Meetings"
 WHERE project = "Project-Alpha"
 SORT date DESC
 ```
@@ -134,12 +131,12 @@ Every correction becomes a rule. Every repeated explanation becomes documentatio
 6. Present data as markdown tables when querying the vault.
 7. Use `grep` to extract frontmatter from files — don't read entire files when scanning many.
 8. If unsure which output style to use, default to `conversation.md`.
-9. When saving meeting notes, place them in the correct subfolder under `03_meetings/` based on meeting type.
-10. When creating tasks, add them to the Kanban board at `04_tasks/boards/main-kanban.md`.
+9. When saving meeting notes, place them in the correct subfolder under `Meetings/` based on meeting type.
+10. When creating tasks, use the TaskNotes HTTP API (`curl -s -X POST "http://127.0.0.1:8080/api/tasks"`).
 11. When the user corrects you, offer to save the correction as a permanent rule (teaching loop).
 12. Respect `.claudeignore` — never read files or folders listed there.
 13. When memory files exceed 150 lines, auto-archive older content to `.claude/context/memory/archive/`.
 14. Include `project:` in frontmatter whenever a note relates to a specific project — this enables "surface everywhere" queries.
-15. During weekly reviews, flag goals in `08_goals/` that have no active project.
+15. During weekly reviews, flag goals in `Goals/` that have no active project.
 
 <!-- USER CORRECTIONS: Add new rules below as the user teaches you -->

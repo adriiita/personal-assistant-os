@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 01_thinking
+folder: Thinking
 ---
 
 # Thinking

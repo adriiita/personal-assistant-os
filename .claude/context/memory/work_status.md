@@ -3,7 +3,7 @@
 ## Current Session
 - **Date**: 2026-02-24
 - **Focus**: Fireflies sync — Youtube Developer Connect meetings
-- **Completed**: Synced 6 Youtube Developer Connect meetings (Feb 16–23) from Fireflies to `03_meetings/general/`
+- **Completed**: Synced 6 Youtube Developer Connect meetings (Feb 16–23) from Fireflies to `Meetings/general/`
 - **Pending**: None
 
 ## Recent Sessions
@@ -11,5 +11,5 @@
 
 ### 2026-02-24
 - Synced 6 "Youtube Developer Connect" meetings from Fireflies (Feb 16–23, 2026)
-- Files saved to `03_meetings/general/`
+- Files saved to `Meetings/general/`
 - All meetings include: key decisions, action items, discussion summary, open questions, follow-up

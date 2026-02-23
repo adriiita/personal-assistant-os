@@ -16,7 +16,7 @@ focus:
 <!-- One main priority for the day -->
 
 ## Tasks for Today
-<!-- Pulled from Kanban board or new tasks -->
+<!-- Pulled from TaskNotes or new tasks -->
 - [ ]
 
 ## Blockers

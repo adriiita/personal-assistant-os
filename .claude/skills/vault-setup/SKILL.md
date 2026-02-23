@@ -20,7 +20,7 @@ You are an intelligent onboarding agent. Your job is to understand the user deep
 
 ### Phase 2: Work Style (Ask after Phase 1)
 - Do you prefer things concise or detailed?
-- How do you like tasks organized? (I'll set up a Kanban board either way, but want to know your style)
+- How do you like tasks organized? (I'll set up TaskNotes either way, but want to know your style)
 - What tools do you already use? (calendar, notes, communication)
 
 ### Phase 3: What to Track (Present options based on what you've learned)
@@ -30,7 +30,7 @@ Based on Phases 1 and 2, RECOMMEND what to enable. Don't just list options — e
 - **Projects** — "You mentioned working on X and Y, so I'd set up project folders for those..."
 - **Meetings** — "Do you have regular meetings? I can set up folders for different types..."
   - If yes: What types? (team standups, client calls, 1:1s, etc.)
-- **Daily Journaling** — "This pairs well with your Kanban board — quick morning intention, evening reflection..."
+- **Daily Journaling** — "This pairs well with your task system — quick morning intention, evening reflection..."
 - **Content Creation** — "If you create YouTube videos, blog posts, etc., I can set up a content pipeline..."
 - **Personal Life** — "Some people track family, health, hobbies. Only if you want — totally optional."
 - **Client/Contact Management** — "Do you work with clients or external contacts?"
@@ -84,33 +84,38 @@ After the interview, execute ALL of the following:
 
 ### 2. Create Meeting Subfolders (if meetings enabled)
 
-For each meeting type the user mentioned, ensure the subfolder exists under `03_meetings/`:
-- `03_meetings/team-standups/`
-- `03_meetings/client-calls/`
-- `03_meetings/one-on-ones/`
+For each meeting type the user mentioned, ensure the subfolder exists under `Meetings/`:
+- `Meetings/team-standups/`
+- `Meetings/client-calls/`
+- `Meetings/one-on-ones/`
 - Or custom types they specified
 
 ### 3. Create Project Folders (if projects mentioned)
 
 For each active project, create:
-- `02_projects/[project-name]/` folder
-- `02_projects/[project-name]/README.md` with project overview
+- `Projects/[project-name]/` folder
+- `Projects/[project-name]/README.md` with project overview
 
 ### 4. Create Guide Files
 
-For each active numbered folder, create a `_guide.md` that explains:
+For each active folder, create a `_guide.md` that explains:
 - What goes in this folder
 - How files should be named
 - What frontmatter to use
 
-### 5. Populate the Kanban Board
+### 5. Create Initial Tasks via TaskNotes
 
-Update `04_tasks/boards/main-kanban.md` with any tasks the user mentioned, replacing the starter tasks.
+If the user mentioned tasks, create them via the TaskNotes API:
+```bash
+curl -s -X POST "http://127.0.0.1:8080/api/tasks" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Task name", "status": "open", "priority": "normal"}'
+```
 
 ### 6. Configure Content Pipeline (if content creation enabled)
 
 Create content-specific folders:
-- `02_projects/youtube/` (or blog, newsletter, etc.)
+- `Projects/youtube/` (or blog, newsletter, etc.)
 - Include a pipeline structure: ideas → research → drafts → published
 
 ### 7. Confirm Completion

@@ -2,8 +2,8 @@
   "interfaceFontSize": 14,
   "alwaysUpdateLinks": true,
   "newFileLocation": "folder",
-  "newFileFolderPath": "00_inbox",
-  "attachmentFolderPath": "06_reference/attachments",
+  "newFileFolderPath": "Inbox",
+  "attachmentFolderPath": "Reference/attachments",
   "showUnsupportedFiles": false,
   "defaultViewMode": "preview",
   "strictLineBreaks": false

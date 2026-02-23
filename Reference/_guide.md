@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 06_reference
+folder: Reference
 ---
 
 # Reference
@@ -37,6 +37,6 @@ tags: [topic1, topic2]
 ```
 
 ## Tips
-- Reference notes are external knowledge; thinking notes (01_thinking) are your synthesis
+- Reference notes are external knowledge; thinking notes (Thinking) are your synthesis
 - After reading a reference, write a thinking note about what you took from it
 - Link reference notes to projects they're relevant to

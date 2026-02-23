@@ -10,17 +10,17 @@ USE WHEN the user:
 - Asks to summarize a meeting
 - Wants action items from a meeting
 - Asks about past meetings or meeting patterns
-- Drops a transcript file into `03_meetings/`
+- Drops a transcript file into `Meetings/`
 
 ## How Meeting Processing Works
 
 ### Step 1: Identify Meeting Type
 
 Ask the user or infer from context:
-- **Team standup** → save to `03_meetings/team-standups/`
-- **Client call** → save to `03_meetings/client-calls/`
-- **One-on-one** → save to `03_meetings/one-on-ones/`
-- **General** → save to `03_meetings/general/`
+- **Team standup** → save to `Meetings/team-standups/`
+- **Client call** → save to `Meetings/client-calls/`
+- **One-on-one** → save to `Meetings/one-on-ones/`
+- **General** → save to `Meetings/general/`
 
 ### Step 2: Load the Meeting Summary Output Style
 
@@ -37,7 +37,7 @@ From the transcript, extract:
 
 ### Step 4: Create the Meeting Note
 
-Save as `03_meetings/[type]/YYYY-MM-DD Meeting Title.md` using the template:
+Save as `Meetings/[type]/YYYY-MM-DD Meeting Title.md` using the template:
 
 ```yaml
 ---
@@ -55,8 +55,13 @@ status: processed
 ### Step 5: Create Tasks from Action Items
 
 For each action item extracted:
-1. Ask the user if they want to add it to the Kanban board
-2. If yes, use the Kanban skill to add it to `04_tasks/boards/main-kanban.md`
+1. Ask the user if they want to create a task in TaskNotes
+2. If yes, use the TaskNotes API to create the task:
+   ```bash
+   curl -s -X POST "http://127.0.0.1:8080/api/tasks" \
+     -H "Content-Type: application/json" \
+     -d '{"title": "Action item", "status": "open", "due": "YYYY-MM-DD", "tags": ["meeting"]}'
+   ```
 3. Include the due date and tag it with the meeting type
 
 ### Step 6: Link to Projects
@@ -73,7 +78,7 @@ Keep summary very brief — standups are short.
 
 ### Client Call
 Focus on: client requests, decisions made, next steps, relationship notes.
-Check if client exists in `03_meetings/client-calls/` for historical context.
+Check if client exists in `Meetings/client-calls/` for historical context.
 
 ### One-on-One
 Focus on: personal development, feedback, goals, action items.
@@ -87,11 +92,11 @@ Default format. Full meeting summary structure.
 When the user asks about past meetings:
 ```bash
 # Find meetings with a specific person
-grep -rl "Person Name" 03_meetings/
+grep -rl "Person Name" Meetings/
 
 # Find meetings about a topic
-grep -rl "topic keyword" 03_meetings/
+grep -rl "topic keyword" Meetings/
 
 # List recent meetings
-ls -lt 03_meetings/*/
+ls -lt Meetings/*/
 ```

@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 00_inbox
+folder: Inbox
 ---
 
 # Inbox
@@ -17,7 +17,7 @@ This is your capture zone. Drop anything here with zero friction.
 1. Drop it here
 2. During your daily or weekly review, process items:
    - Move to the right folder
-   - Turn into a task on the Kanban board
+   - Turn into a task in TaskNotes
    - Archive if no longer relevant
 3. Keep the inbox empty (or close to it)
 

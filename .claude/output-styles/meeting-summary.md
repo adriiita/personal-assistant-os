@@ -59,5 +59,5 @@ status: raw | processed
 3. Discussion summary should be 20% of the transcript length max
 4. Flag any conflicting statements or unclear commitments
 5. Link to relevant project files using [[wiki links]] if applicable
-6. After creating the summary, offer to create tasks on the Kanban board for each action item
-7. Save summaries to `03_meetings/` with filename format: `YYYY-MM-DD Meeting Title.md`
+6. After creating the summary, offer to create tasks in TaskNotes for each action item
+7. Save summaries to `Meetings/` with filename format: `YYYY-MM-DD Meeting Title.md`

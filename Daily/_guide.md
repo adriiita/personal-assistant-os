@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 05_daily
+folder: Daily
 ---
 
 # Daily
@@ -10,7 +10,7 @@ Daily journals, morning check-ins, evening reflections, and weekly reviews.
 ## How to Use
 
 Run `/daily-review` in Claude to start a routine. Claude will:
-1. Check your Kanban board and recent activity
+1. Check your TaskNotes and recent activity
 2. Ask you a few questions
 3. Create a daily note here
 

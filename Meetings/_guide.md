@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 03_meetings
+folder: Meetings
 ---
 
 # Meetings

@@ -1,6 +1,6 @@
 ---
 type: guide
-folder: 08_goals
+folder: Goals
 ---
 
 # Goals
@@ -13,7 +13,7 @@ Your vision-to-action cascade. This is what connects "where I want to be in 3 ye
 3-Year Vision → Yearly Goals → Quarterly Milestones → Monthly Goals → Weekly Review → Daily Tasks
 ```
 
-Every layer connects to the next. Projects live in `02_projects/` and link to goals here. Daily tasks on the Kanban board link to projects. Nothing floats without purpose.
+Every layer connects to the next. Projects live in `Projects/` and link to goals here. Daily tasks in TaskNotes link to projects. Nothing floats without purpose.
 
 ## Files
 
@@ -25,9 +25,9 @@ Every layer connects to the next. Projects live in `02_projects/` and link to go
 
 ## How Goals Connect to Everything
 
-- **Goals → Projects**: Each goal should have at least one active project in `02_projects/`
-- **Projects → Tasks**: Each project generates tasks on the Kanban board
-- **Tasks → Daily**: `/daily-review` pulls tasks from the board
+- **Goals → Projects**: Each goal should have at least one active project in `Projects/`
+- **Projects → Tasks**: Each project generates tasks in TaskNotes
+- **Tasks → Daily**: `/daily-review` pulls tasks from TaskNotes
 - **Weekly → Monthly**: `/weekly` reviews project progress against monthly goals
 - **Monthly → Yearly**: Monthly reviews check quarterly milestones
 

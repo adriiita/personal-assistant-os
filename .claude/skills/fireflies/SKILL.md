@@ -17,7 +17,7 @@ If the user doesn't have API access:
    - Log into app.fireflies.ai
    - Open the meeting transcript
    - Click Download → choose JSON or DOCX format
-2. Have them paste the content or drop the file into `03_meetings/`
+2. Have them paste the content or drop the file into `Meetings/`
 3. Process using the meetings skill
 
 ### Approach 2: MCP Server (Business Plan — $19/mo)
@@ -40,15 +40,15 @@ The MCP server should be configured in `.claude/settings.json` under the `mcpSer
    ```
 
 2. For each unsynced transcript:
-   - Check if a file already exists in `03_meetings/` with the same date and title
+   - Check if a file already exists in `Meetings/` with the same date and title
    - If not, fetch the full transcript
    - Process using the meetings skill
-   - Save to the appropriate `03_meetings/` subfolder
+   - Save to the appropriate `Meetings/` subfolder
 
 3. After sync, report:
    - How many meetings were synced
    - Any new action items found
-   - Offer to create Kanban tasks
+   - Offer to create tasks in TaskNotes
 
 #### MCP Configuration (for setup)
 
