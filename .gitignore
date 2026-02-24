@@ -17,6 +17,17 @@ Thumbs.db
 *.key
 *.pem
 
+# Private user content (never commit to public repo)
+Meetings/team-standups/*.md
+Meetings/client-calls/*.md
+Meetings/one-on-ones/*.md
+Meetings/general/*.md
+Daily/*.md
+.claude/context/memory/
+.claude/context/session-logs/
+.claude/context/projects/*.md
+!.claude/context/projects/CLAUDE.md
+
 # Private folders (uncomment if you use them)
 # private/
 # journal/
